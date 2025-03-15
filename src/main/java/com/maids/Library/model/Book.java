@@ -16,21 +16,19 @@ public class Book {
     private Long id;
 
     @NotBlank(message = "Title is mandatory")
-    @Size(min = 1, max = 255, message = "Title must be between 1 and 255 characters")
+    @Size(max = 255, message = "Title must be between 1 and 255 characters")
     private String title;
 
     @NotBlank(message = "Author is mandatory")
-    @Size(min = 1, max = 255, message = "Author must be between 1 and 255 characters")
+    @Size(max = 255, message = "Author must be between 1 and 255 characters")
     private String author;
 
     @NotNull(message = "Publication year is mandatory")
-    @Min(value = 1000, message = "Publication year must be after 1000")
     private Integer publicationYear;
 
-    @NotBlank(message = "ISBN is mandatory")
     @Column(unique = true)
     @Pattern(regexp = "^(?=(?:[^0-9]*[0-9]){10}(?:(?:[^0-9]*[0-9]){3})?$)[\\d-]+$", message = "Invalid ISBN format")
-    @NotNull
+    @NotNull(message = "ISBN is mandatory")
     private String isbn;
 
     @Autowired

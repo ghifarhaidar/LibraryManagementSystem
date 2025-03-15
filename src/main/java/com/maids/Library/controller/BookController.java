@@ -26,38 +26,28 @@ public class BookController {
 
     // GET /api/books/{id}: Retrieve details of a specific book by ID
     @GetMapping("/{id}")
-    public ResponseEntity<Book> getBookById(@PathVariable Long id) {
-        try {
-            return ResponseEntity.ok(bookService.findById(id));
-        } catch (ResourceNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Book> getBookById(@PathVariable Long id) throws ResourceNotFoundException {
+        return ResponseEntity.ok(bookService.findById(id));
     }
 
     // POST /api/books: Add a new book to the library
-    @PostMapping 
+    @PostMapping
     public ResponseEntity<Book> createBook(@Valid @RequestBody Book book) {
         return ResponseEntity.status(HttpStatus.CREATED).body(bookService.save(book));
     }
 
     // PUT /api/books/{id}: Update an existing book's information
     @PutMapping("/{id}")
-    public ResponseEntity<Book> updateBook(@PathVariable Long id,@Valid @RequestBody Book bookDetails) {
-        try {
-            return ResponseEntity.ok(bookService.update(id, bookDetails));
-        } catch (ResourceNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+    public ResponseEntity<Book> updateBook(@PathVariable Long id,@Valid @RequestBody Book bookDetails) throws ResourceNotFoundException {
+        return ResponseEntity.ok(bookService.update(id, bookDetails));
+
     }
 
     // DELETE /api/books/{id}: Remove a book from the library
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
-        try {
-            bookService.delete(id);
-            return ResponseEntity.noContent().build();
-        } catch (ResourceNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+    public ResponseEntity<Void> deleteBook(@PathVariable Long id) throws ResourceNotFoundException {
+        bookService.delete(id);
+        return ResponseEntity.noContent().build();
+
     }
 }
