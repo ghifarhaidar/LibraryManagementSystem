@@ -42,6 +42,13 @@ public class BorrowingRecord {
         this.returnDate = null;
     }
 
+    public BorrowingRecord(Book book, Patron patron, LocalDate borrowDate, LocalDate returnDate) {
+        this.book = book;
+        this.patron = patron;
+        this.borrowDate = borrowDate;
+        this.returnDate = returnDate;
+    }
+
     public Long getId() {
         return id;
     }

@@ -17,10 +17,9 @@ public class Patron {
     private Long id;
 
     @NotBlank(message = "Name is mandatory")
-    @Size(min = 1, max = 255, message = "Name must be between 1 and 255 characters")
+    @Size(max = 255, message = "Name must be less than 255 characters")
     private String name;
 
-    @NotBlank(message = "Contact information is mandatory")
     @Email(message = "Contact information must be a valid email address")
     private String contactInformation;
 
