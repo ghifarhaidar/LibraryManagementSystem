@@ -10,6 +10,7 @@ import com.maids.Library.repository.BookRepository;
 import com.maids.Library.repository.PatronRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -24,9 +25,12 @@ public class BorrowingService {
     @Autowired
     private PatronRepository patronRepository;
 
+    @Transactional(readOnly = true)
     public List<BorrowingRecord> findAll() {
         return borrowingRepository.findAll();
     }
+
+    @Transactional
     public BorrowingRecord borrowBook(Long bookId,Long patronId) throws ResourceNotFoundException, BookNotAvailableException {
         Book book= bookRepository.findById(bookId).orElseThrow(() -> new ResourceNotFoundException("Book not found"));
         if(borrowingRepository.findByBookAndReturnDateIsNull(book).isPresent()){
@@ -40,6 +44,7 @@ public class BorrowingService {
 
     }
 
+    @Transactional
     public BorrowingRecord returnBook(Long bookId,Long patronId) throws ResourceNotFoundException {
         Book book= bookRepository.findById(bookId).orElseThrow(() -> new ResourceNotFoundException("Book not found"));
         Patron patron= patronRepository.findById(patronId).orElseThrow(() -> new ResourceNotFoundException("Patron not found"));
