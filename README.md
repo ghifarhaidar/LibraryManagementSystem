@@ -18,6 +18,7 @@ The system allows librarians to:
 4. [Database Configuration](#database-configuration)
     - [MySQL](#mysql)
 5. [Swagger](#swagger)
+6. [Summary](#summary)
 ---
 
 ## How to Run
@@ -189,3 +190,12 @@ The system allows librarians to:
 - Access the Swagger UI at
     ```
   http://localhost:8080/swagger-ui/index.html#/
+
+### **Summary**
+This documentation provides a comprehensive guide to setting up, running, and interacting with your **Library Management System**.
+It includes:
+- **How to Run**: Steps to clone, configure, and run the application.
+- **API Endpoints**: Detailed examples for all endpoints.
+- **Testing**: Instructions for running unit tests.
+- **Database Configuration**: Setup for MySQL databases.
+- **Dependencies**: List of required dependencies.
